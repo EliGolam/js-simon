@@ -2,7 +2,8 @@
 /*#region GENERAL DEFAULTS  */
 body {
     font: var(--fontweight-default) var(--fontsize-default) var(--fontfamily-default);
-    columns: var(--clr-dark-grey);
+    background-color: var(--clr-secondary);
+    color: var(--clr-white);
 }
 /*#endregion GENERAL DEFAULTS  */
 /* --------------------------------------------------------------------------------- */
@@ -10,12 +11,75 @@ body {
 /* --------------------------------------------------------------------------------- */
 /*#region UTILITIES */ 
 /* ------------------------------------------ */
+/*#region containers */
+.container-100 {
+    min-width: 100%;
+    min-height: 100vh;
+}
+
+.container {
+    margin: 0 auto;
+    width: 90%;
+    max-width: 35rem;
+}
+
+/* ------------------------------------------ */
 /*#region aesthetic elements */
 .flow > * + * {
     margin-top: var(--flow-spacing);
 }
 /*#endregion aesthetic elements */
 
+/* ------------------------------------------ */
+/*#region flex */
+.d-flex {
+    display: flex;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.justify-content-center {
+    justify-content: center;
+}
+
+.align-items-center {
+    align-items: center;
+}
+/*#endregion flex */
+
+/* ------------------------------------------ */
+/*#region shapes */
+.shape-circle {
+    aspect-ratio: 1 / 1;
+    border-radius: 100vh;
+    border-color: transparent;
+}
+
+.shape-square {
+    aspect-ratio: 1 / 1;
+}
+/*#endregion shapes */
+
+/* ------------------------------------------ */
+/*#region colors */
+.bg-ss-1 {
+    background-color: var(--clr-ss-1);
+}
+
+.bg-ss-2 {
+    background-color: var(--clr-ss-2);
+}
+
+.bg-ss-3 {
+    background-color: var(--clr-ss-3);
+}
+
+.bg-ss-4 {
+    background-color: var(--clr-ss-4);
+}
+/*#endregion colors */
 /*#endregion UTILITIES */
 /* --------------------------------------------------------------------------------- */
 
@@ -29,14 +93,46 @@ body {
 
 /* --------------------------------------------------------------------------------- */
 /*#region BLOCKS: component specific rules */
+.simon-says {
+    gap: 1.6rem;
+    overflow: hidden;
+
+    position: relative;
+}
+
+.simon-says_blocks {
+    width: calc(100% / 2 - .8rem);
+    cursor: pointer;
+}
+
+.btn-start {
+    position: absolute;
+        top: 50%;
+        left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 40%;
+    background-color: var(--clr-secondary);
+    color: var(--clr-white);
+    cursor: pointer;
+}
+
+
 /*#endregion BLOCKS: component specific rules */
 /* --------------------------------------------------------------------------------- */
 
 
 /* --------------------------------------------------------------------------------- */
 /*#region MEDIA QUERIES */
-/* @media only screen and (max-width: 1000px) {
+@media (hover) {
+    .simon-says_blocks:hover {
+        transform: scale(1.15);
+    }
 
-} */
+    .btn-start:hover {
+        background-color: var(--clr-white);
+        color: var(--clr-dark-grey);
+    }
+}
 /*#endregion MEDIA QUERIES */
 /* --------------------------------------------------------------------------------- */

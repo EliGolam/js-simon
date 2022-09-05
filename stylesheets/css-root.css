@@ -3,8 +3,13 @@
 :root {
     /* Color Schemes */
     --clr-primary: #0d6efd;
-    --clr-secondary: #6c757d;
+    --clr-secondary:#161B40;
     --clr-accent: #8b1428;
+
+    --clr-ss-1: #43bee5;
+    --clr-ss-2: #f40058;
+    --clr-ss-3: #efa500;
+    --clr-ss-4: #41b853;
   
     --clr-dark-grey: #282828;
     --clr-grey: #808080;
