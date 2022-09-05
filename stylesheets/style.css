@@ -105,6 +105,11 @@ body {
     cursor: pointer;
 }
 
+.simon-says_blocks.active {
+    transform: scale(1.25);
+    background-color: var(--clr-white);
+}
+
 .btn-start {
     position: absolute;
         top: 50%;
@@ -126,7 +131,7 @@ body {
 /*#region MEDIA QUERIES */
 @media (hover) {
     .simon-says_blocks:hover {
-        transform: scale(1.15);
+        transform: scale(1.1);
     }
 
     .btn-start:hover {
