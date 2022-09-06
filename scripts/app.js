@@ -2,82 +2,76 @@
 console.log('DEBUG - app.js: OK!');
 
 // Initializing necessary global variables
-const btnStart = document.getElementById('simon-says_start');
+const startBtn = document.getElementById('simon-says_start');
 const challengeSeq = [];
+
+// Initializing Game properties
+let sequencePos = 0; // Position of the sequence in which the player is at currently. It starts from 0
 let start = false;
+const BASE_DIFFICULTY = 4;
 
-btnStart.addEventListener('click', () => {
-    console.log('DEBUG - btnStart: Clicked!');
-    btnStart.classList.remove('active');
+/* **************************************************************************************** */
+// Game is started by the click of the button Start
+startBtn.addEventListener('click', () => {
+    console.log('DEBUG - startBtn: Clicked!');
+    startBtn.classList.remove('active'); // Remove the start buttons once the game is started
 
-    // Initializing Game properties
-    let counter = 0;
-    let win = false;
-    
     // Initializing buttons
     const continueBtn = document.getElementById('simon-says_continue'); 
     const tryAgainBtn = document.getElementById('simon-says_again');
-    const buttons = document.querySelectorAll('.simon-says_blocks');
-    console.log(buttons);
+    const colorBtn = document.querySelectorAll('.simon-says_blocks');
     
-    // Create the challenge
-    let difficulty = 4;
+    // Create the challenge and Start the game
+    let difficulty = BASE_DIFFICULTY;
     challengeSeq.push(...createChallengeSequence(difficulty));
+    playGame(colorBtn, challengeSeq);
+    
 
-    // Start Challenge
-    startGame(buttons, challengeSeq);
 
-    // Try Again
+    // Add click events to colorBtn
+    for (let button of colorBtn) {
+        button.addEventListener('click', () => {
+            // Only activate the colorBtn if the game is started
+            const buttonIdx = Array.prototype.indexOf.call(colorBtn, button);
+            
+            if (start){
+                if (buttonIdx === challengeSeq[sequencePos]) {
+                    console.log('CORRECT!', challengeSeq[sequencePos]);
+                    if (sequencePos < challengeSeq.length - 1) {
+                        sequencePos++; 
+                    } 
+                    else {
+                        console.log('YOU WON', 'sequencePos:', sequencePos);
+                        deactivateAllBtnsOfType(colorBtn);
+                        continueBtn.classList.add('active');
+                    }
+    
+                } else {
+                    console.log('nopers', buttonIdx, challengeSeq[sequencePos], 'sequencePos:', sequencePos);
+                    deactivateAllBtnsOfType(colorBtn);
+                    tryAgainBtn.classList.add('active');
+                }
+            }
+        })
+    }
+
+
+    // Try Again challenge
     tryAgainBtn.addEventListener('click', () => {
-        startGame(buttons, challengeSeq);
+        difficulty = BASE_DIFFICULTY;
+        challengeSeq.length = 0;       
+        challengeSeq.push(...createChallengeSequence(difficulty));
+
+        playGame(colorBtn, challengeSeq);
         tryAgainBtn.classList.remove('active');
     })
 
     // Continue challenge
     continueBtn.addEventListener('click', () => {
-        startGame(buttons, challengeSeq);
+        challengeSeq.length = 0;
+        challengeSeq.push(...createChallengeSequence(++difficulty));
+        
+        playGame(colorBtn, challengeSeq);
         continueBtn.classList.remove('active');
     })
-
-
-    // Add click events to buttons
-    for (let button of buttons) {
-        button.addEventListener('click', () => {
-            // Only activate the buttons if the game is started
-            const buttonIdx = Array.prototype.indexOf.call(buttons, button);
-            if (start){
-                if (buttonIdx === challengeSeq[counter]) {
-                    (counter < challengeSeq.length - 1) ? counter++ : win = true;
-                    
-    
-                    if (win) {
-                        console.log('YOU WON', 'counter:', counter);
-                        // Blink win effect
-                        start = false;
-                        win = false;
-                        continueBtn.classList.add('active');
-                        counter = 0;
-                        challengeSeq.length = 0;
-                        console.log('Empty array', challengeSeq);
-                        challengeSeq.push(...createChallengeSequence(++difficulty));
-                        deactivateButtons(buttons);
-                    }
-    
-                } else {
-                    console.log('nopers', buttonIdx, challengeSeq[counter], 'counter:', counter);
-                    start = false;
-                    counter = 0;
-                    console.log('DEBUG - COUNTER:', counter);
-                    difficulty = 4;
-                    challengeSeq.length = 0;
-                    console.log('Empty array', challengeSeq);
-                    challengeSeq.push(...createChallengeSequence(difficulty));
-                    tryAgainBtn.classList.add('active');
-                    continueBtn.classList.remove('active');
-                    
-                    deactivateButtons(buttons);
-                }
-            }
-        })
-    }
 });

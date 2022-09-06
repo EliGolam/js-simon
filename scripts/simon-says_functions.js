@@ -1,5 +1,8 @@
+// Initial Handshake
+console.log('DEBUG - simon-says_functions.js: OK!');
+
 // FUNCTIONS
-function createChallengeSequence (difficulty) {
+function createChallengeSequence(difficulty) {
     arr = []
     console.log('Current Difficulty:', difficulty);
     while(arr.length < difficulty) {
@@ -10,7 +13,27 @@ function createChallengeSequence (difficulty) {
 }
 
 
-function btnActive (button, delay) {
+function playGame (buttons, sequence) {
+    start = false;
+    counter = 0;
+    // Illuminate the sequence
+    for(let i = 0; i < sequence.length; i++) {
+        console.log(buttons[sequence[i]]);
+        blinkColorBtn(buttons[sequence[i]], i);
+    }
+
+    // Activate continue btn
+    setTimeout(function(){
+        start = true;
+        for (let button of buttons) {
+            button.classList.add('started');
+        }
+        console.log('Game Started!');
+    }, 1200 * sequence.length);
+}
+
+
+function blinkColorBtn (button, delay) {
     setTimeout(function () {
         console.log('Activating button', button.getAttribute('id'));
         button.classList.add('active')
@@ -23,29 +46,13 @@ function btnActive (button, delay) {
 }
 
 
-function startGame (buttons, challengeSeq) {
-    // Illuminate the sequence
-    for(let i = 0; i < challengeSeq.length; i++) {
-        console.log(buttons[challengeSeq[i]]);
-        btnActive(buttons[challengeSeq[i]], i);
-    }
 
-    // Activate continue btn
-    setTimeout(function(){
-        start = true;
-        for (let button of buttons) {
-            button.classList.add('started');
-        }
-        console.log('Game Started!');
-    }, 1200 * challengeSeq.length);
-}
 
-function deactivateButtons(buttons) {
+function deactivateAllBtnsOfType (buttons) {
     for (let button of buttons) {
         button.classList.remove('started');
     }
 }
-
 
 
 /* function clickedButton(button, option) {

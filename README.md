@@ -2,6 +2,8 @@
 
 ## Versions
 
+### 0.6: Improved legibility of the code
+
 ### 0.5: Added functionalities to buttons
 
 * Buttons can't be hovered on while the ame is paused
