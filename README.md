@@ -2,6 +2,8 @@
 
 ## Versions
 
+### 0.4: Added Lose condition for Simon Says
+
 ### 0.3: Created Functional Simon Says Win
 
 #### Known Issues
