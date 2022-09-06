@@ -42,13 +42,15 @@ startBtn.addEventListener('click', () => {
                     } 
                     else {
                         console.log('YOU WON', 'sequencePos:', sequencePos);
-                        deactivateAllBtnsOfType(colorBtn);
+                        start = false;
+                        toggleAllBtnsOfType(colorBtn, 'off');
                         continueBtn.classList.add('active');
                     }
     
                 } else {
                     console.log('nopers', buttonIdx, challengeSeq[sequencePos], 'sequencePos:', sequencePos);
-                    deactivateAllBtnsOfType(colorBtn);
+                    start = false;
+                    toggleAllBtnsOfType(colorBtn, 'off');
                     tryAgainBtn.classList.add('active');
                 }
             }

@@ -65,6 +65,10 @@ I minimized the Global Variables to the ones that are necessary only throughout 
 
 ## Versions
 
+### 0.7.1: Added README JavaScript section
+
+* Also fixed minor bug with JavaScript **started** variable that wasn't being turned to false when the game ended
+
 ### 0.7: Adding README documentation
 
 ### 0.6: Improved legibility of the code

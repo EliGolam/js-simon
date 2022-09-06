@@ -2,6 +2,7 @@
 console.log('DEBUG - simon-says_functions.js: OK!');
 
 // FUNCTIONS
+/* Function to create the challenge. It returns the array representing the sequence to follow */
 function createChallengeSequence(difficulty) {
     arr = []
     console.log('Current Difficulty:', difficulty);
@@ -13,8 +14,8 @@ function createChallengeSequence(difficulty) {
 }
 
 
+/* Function that runs the game. Resets necessary variables and automatically launches the blink sequence animation*/
 function playGame (buttons, sequence) {
-    start = false;
     sequencePos = 0;
     // Illuminate the sequence
     for(let i = 0; i < sequence.length; i++) {
@@ -22,17 +23,16 @@ function playGame (buttons, sequence) {
         blinkColorBtn(buttons[sequence[i]], i);
     }
 
-    // Activate continue btn
+    // Activate continue btn once the blinking animation is over
     setTimeout(function(){
         start = true;
-        for (let button of buttons) {
-            button.classList.add('started');
-        }
+        // Activate the buttons for the user
+        toggleAllBtnsOfType(buttons, 'on');
         console.log('Game Started!');
     }, 1200 * sequence.length);
 }
 
-
+/* Blinking animation to show the sequence */
 function blinkColorBtn (button, delay) {
     setTimeout(function () {
         console.log('Activating button', button.getAttribute('id'));
@@ -45,52 +45,19 @@ function blinkColorBtn (button, delay) {
     }, (delay*1200 + 1000));
 }
 
-
-
-
-function deactivateAllBtnsOfType (buttons) {
-    for (let button of buttons) {
-        button.classList.remove('started');
+/* Toggle the buttons: on or off */
+function toggleAllBtnsOfType (buttons, command) {
+    if (command === 'on') {
+        for (let button of buttons) {
+            button.classList.add('started');
+        }
+    }
+    else if(command === 'off') {
+        for (let button of buttons) {
+            button.classList.remove('started');
+        }   
     }
 }
 
 
-/* function clickedButton(button, option) {
-    button.addEventListener('click', function(){
-        const choice = activateBtn(button);
-        if (choice === option) {
-            console.log(choice, challengeArr, 'WIN');
-            return true;
-        } else {
-            console.log(choice, challengeArr, 'NOPE');
-            return false;
-        }
-    });
-}
-
-
-function activateBtn(button) {
-    console.log('DEBUG - Simon Says btn: Clicked!', button.getAttribute('id'));
-    button.classList.add('active');
-
-    setTimeout(function () {
-        console.log('Deactivating button', button.getAttribute('id'));
-        button.classList.remove('active')
-    }, 1000)
-
-    return button.getAttribute('id');
-}
-
-
-function activateBtn () {
-    console.log('DEBUG - Simon Says btn: Clicked!', this.getAttribute('id'));
-    this.classList.add('active');
-
-    setTimeout(() => {
-        this.classList.remove('active');
-        console.log('DEBUG - Simon Says btn: Deactivating', this.getAttribute('id'));
-    }, 500)
-
-    return this.getAttribute('id');
-} */
 
