@@ -103,25 +103,37 @@ body {
 .simon-says_blocks {
     width: calc(100% / 2 - .8rem);
     cursor: pointer;
+    opacity: .5;
 }
 
 .simon-says_blocks.active {
-    transform: scale(1.25);
-    background-color: var(--clr-white);
+    transform: scale(1.1);
+    opacity: 1;
 }
 
-.btn-start {
+.center-button {
     position: absolute;
         top: 50%;
         left: 50%;
     transform: translate(-50%, -50%);
-
-    width: 40%;
     background-color: var(--clr-secondary);
-    color: var(--clr-white);
-    cursor: pointer;
+    width: 40%;
+    overflow: hidden;
 }
 
+.simon-says_btn {
+    min-width: 100%;
+    min-height: 100%;
+    background-color: var(--clr-secondary);
+    color: var(--clr-white);
+    border-color: transparent;
+    cursor: pointer;
+    display: none;
+}
+
+.simon-says_btn.active {
+    display: block;
+}
 
 /*#endregion BLOCKS: component specific rules */
 /* --------------------------------------------------------------------------------- */
@@ -130,11 +142,12 @@ body {
 /* --------------------------------------------------------------------------------- */
 /*#region MEDIA QUERIES */
 @media (hover) {
-    .simon-says_blocks:hover {
+    .simon-says_blocks.started:hover {
         transform: scale(1.1);
+        opacity: 1;
     }
 
-    .btn-start:hover {
+    .simon-says_btn:hover {
         background-color: var(--clr-white);
         color: var(--clr-dark-grey);
     }

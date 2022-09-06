@@ -29,7 +29,8 @@
     <link rel="stylesheet" href="./stylesheets/style.css" type="text/css">
 
     <!-- My Scripts -->
-    <script defer src="./scripts/script.js" type="text/javascript"></script>
+    <script defer src="./scripts/my_functions.js" type="text/javascript"></script>
+    <script defer src="./scripts/app.js" type="text/javascript"></script>
     <!--#endregion Stylesheets and Scripts -->
 
     <!--#region META -->
@@ -45,6 +46,7 @@
     <!--#region HEADER -->
     <header>
         <h1>Simon Says</h1>
+        <div class="results"></div>
     </header>
     <!--#endregion HEADER -->
 
@@ -58,7 +60,10 @@
                 <div class="simon-says_blocks shape-square bg-ss-3" id="ss-bottomLeft"></div>
                 <div class="simon-says_blocks shape-square bg-ss-4" id="ss-bottomRight"></div>
 
-                <button id="simon-says_start" class="shape-circle btn-start btn btn-primary" type="button">PLAY</button>
+                <div class="shape-circle center-button d-flex justify-content-center align-items-center">
+                    <button id="simon-says_start" class="simon-says_btn btn-start btn btn-primary active" type="button">Start</button>
+                    <button id="simon-says_continue" class="simon-says_btn btn-continue btn btn-primary" type="button">Continue</button>
+                </div>
             </div>             
         </div>
     </main>
