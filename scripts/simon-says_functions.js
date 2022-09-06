@@ -15,8 +15,11 @@ function createChallengeSequence(difficulty) {
 
 
 /* Function that runs the game. Resets necessary variables and automatically launches the blink sequence animation*/
-function playGame (buttons, sequence) {
+function playGame (buttons, sequence, difficulty) {
     sequencePos = 0;
+    challengeSeq.length = 0;
+    challengeSeq.push(...createChallengeSequence(difficulty));
+    
     // Illuminate the sequence
     for(let i = 0; i < sequence.length; i++) {
         console.log(buttons[sequence[i]]);

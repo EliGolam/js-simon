@@ -65,6 +65,10 @@ I minimized the Global Variables to the ones that are necessary only throughout 
 
 ## Versions
 
+### 0.7.2: Improved the playGame function
+
+* The creation of the next sequence within the function
+
 ### 0.7.1: Added README JavaScript section
 
 * Also fixed minor bug with JavaScript **started** variable that wasn't being turned to false when the game ended

@@ -23,10 +23,8 @@ startBtn.addEventListener('click', () => {
     // Create the challenge and Start the game
     const BASE_DIFFICULTY = 1;
     let difficulty = BASE_DIFFICULTY;
-    challengeSeq.push(...createChallengeSequence(difficulty));
-    playGame(colorBtn, challengeSeq);
+    playGame(colorBtn, challengeSeq, difficulty);
     
-
 
     // Add click events to colorBtn
     for (let button of colorBtn) {
@@ -61,19 +59,13 @@ startBtn.addEventListener('click', () => {
     // Try Again challenge
     tryAgainBtn.addEventListener('click', () => {
         difficulty = BASE_DIFFICULTY;
-        challengeSeq.length = 0;       
-        challengeSeq.push(...createChallengeSequence(difficulty));
-
-        playGame(colorBtn, challengeSeq);
+        playGame(colorBtn, challengeSeq, difficulty);
         tryAgainBtn.classList.remove('active');
     })
 
     // Continue challenge
     continueBtn.addEventListener('click', () => {
-        challengeSeq.length = 0;
-        challengeSeq.push(...createChallengeSequence(++difficulty));
-        
-        playGame(colorBtn, challengeSeq);
+        playGame(colorBtn, challengeSeq, ++difficulty);
         continueBtn.classList.remove('active');
     })
 });
