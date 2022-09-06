@@ -111,6 +111,11 @@ body {
     opacity: 1;
 }
 
+.simon-says_blocks.started:active {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
 .center-button {
     position: absolute;
         top: 50%;
@@ -129,6 +134,11 @@ body {
     border-color: transparent;
     cursor: pointer;
     display: none;
+}
+
+.simon-says_btn:active {
+    background-color: var(--clr-white);
+    color: var(--clr-dark-grey);
 }
 
 .simon-says_btn.active {

@@ -15,7 +15,7 @@ function createChallengeSequence(difficulty) {
 
 function playGame (buttons, sequence) {
     start = false;
-    counter = 0;
+    sequencePos = 0;
     // Illuminate the sequence
     for(let i = 0; i < sequence.length; i++) {
         console.log(buttons[sequence[i]]);

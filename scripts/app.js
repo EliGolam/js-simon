@@ -3,12 +3,11 @@ console.log('DEBUG - app.js: OK!');
 
 // Initializing necessary global variables
 const startBtn = document.getElementById('simon-says_start');
-const challengeSeq = [];
 
 // Initializing Game properties
-let sequencePos = 0; // Position of the sequence in which the player is at currently. It starts from 0
 let start = false;
-const BASE_DIFFICULTY = 4;
+const challengeSeq = [];
+let sequencePos = 0; // Position of the sequence in which the player is at currently. It starts from 0
 
 /* **************************************************************************************** */
 // Game is started by the click of the button Start
@@ -22,6 +21,7 @@ startBtn.addEventListener('click', () => {
     const colorBtn = document.querySelectorAll('.simon-says_blocks');
     
     // Create the challenge and Start the game
+    const BASE_DIFFICULTY = 1;
     let difficulty = BASE_DIFFICULTY;
     challengeSeq.push(...createChallengeSequence(difficulty));
     playGame(colorBtn, challengeSeq);
@@ -31,9 +31,9 @@ startBtn.addEventListener('click', () => {
     // Add click events to colorBtn
     for (let button of colorBtn) {
         button.addEventListener('click', () => {
-            // Only activate the colorBtn if the game is started
             const buttonIdx = Array.prototype.indexOf.call(colorBtn, button);
-            
+
+            // Only activate the colorBtn if the game is started
             if (start){
                 if (buttonIdx === challengeSeq[sequencePos]) {
                     console.log('CORRECT!', challengeSeq[sequencePos]);
