@@ -4,16 +4,15 @@ console.log('DEBUG - app.js: OK!');
 // Initializing necessary global variables
 const btnStart = document.getElementById('simon-says_start');
 const challengeSeq = [];
+let start = false;
 
 btnStart.addEventListener('click', () => {
     console.log('DEBUG - btnStart: Clicked!');
     btnStart.classList.remove('active');
 
     // Initializing Game properties
-    counter = 0;
-    start = false;
-    win = false;
-    fail = false;
+    let counter = 0;
+    let win = false;
     
     // Initializing buttons
     const continueBtn = document.getElementById('simon-says_continue'); 
@@ -28,6 +27,7 @@ btnStart.addEventListener('click', () => {
     // Start Challenge
     startGame(buttons, challengeSeq);
 
+    // Try Again
     tryAgainBtn.addEventListener('click', () => {
         startGame(buttons, challengeSeq);
         tryAgainBtn.classList.remove('active');
@@ -37,19 +37,17 @@ btnStart.addEventListener('click', () => {
     continueBtn.addEventListener('click', () => {
         startGame(buttons, challengeSeq);
         continueBtn.classList.remove('active');
-        console.log(continueBtn.classList);
     })
 
 
     // Add click events to buttons
     for (let button of buttons) {
-        console.log('Initializing btn: ', Array.prototype.indexOf.call(buttons, button));
         button.addEventListener('click', () => {
+            // Only activate the buttons if the game is started
+            const buttonIdx = Array.prototype.indexOf.call(buttons, button);
             if (start){
-                if (Array.prototype.indexOf.call(buttons, button) === challengeSeq[counter]) {
-                    console.log('CORRECT!', challengeSeq[counter]);
+                if (buttonIdx === challengeSeq[counter]) {
                     (counter < challengeSeq.length - 1) ? counter++ : win = true;
-                    console.log('DEBUG - COUNTER:', counter);
                     
     
                     if (win) {
@@ -62,12 +60,11 @@ btnStart.addEventListener('click', () => {
                         challengeSeq.length = 0;
                         console.log('Empty array', challengeSeq);
                         challengeSeq.push(...createChallengeSequence(++difficulty));
-                        // Show Button
+                        deactivateButtons(buttons);
                     }
     
                 } else {
-                    console.log('nopers', Array.prototype.indexOf.call(buttons, button), challengeSeq[counter], 'counter:', counter);
-                    fail = true;
+                    console.log('nopers', buttonIdx, challengeSeq[counter], 'counter:', counter);
                     start = false;
                     counter = 0;
                     console.log('DEBUG - COUNTER:', counter);

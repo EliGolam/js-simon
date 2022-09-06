@@ -2,6 +2,10 @@
 
 ## Versions
 
+### 0.5: Added functionalities to buttons
+
+* Buttons can't be hovered on while the ame is paused
+
 ### 0.4: Added Lose condition for Simon Says
 
 ### 0.3: Created Functional Simon Says Win

@@ -48,7 +48,7 @@ function deactivateButtons(buttons) {
 
 
 
-function clickedButton(button, option) {
+/* function clickedButton(button, option) {
     button.addEventListener('click', function(){
         const choice = activateBtn(button);
         if (choice === option) {
@@ -75,7 +75,7 @@ function activateBtn(button) {
 }
 
 
-/* function activateBtn () {
+function activateBtn () {
     console.log('DEBUG - Simon Says btn: Clicked!', this.getAttribute('id'));
     this.classList.add('active');
 
